@@ -1,0 +1,302 @@
+<!--
+Folder name: gym-website
+File(s):
+  - index.html  (this single-file contains HTML, CSS, and JS)
+  - assets/ (optional folder for images/icons if you split files later)
+
+Save this file as: index.html inside the "gym-website" folder and open it in a browser.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PulseFit Gym — Strength, Sweat, Success</title>
+
+  <style>
+    /* ====== Reset & base ====== */
+    :root{
+      --accent:#ff7a59;
+      --dark:#0f1724;
+      --muted:#6b7280;
+      --card:#111827;
+      --glass: rgba(255,255,255,0.03);
+      --max-width:1100px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071025 0%, #071022 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:40px 16px;
+      display:flex;justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--max-width);}
+
+    /* ===== Header / Hero ===== */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ffd27a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220
+    }
+    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:var(--accent);color:#081223;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+
+    .hero{
+      display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:36px;
+    }
+    .hero-left h1{font-size:clamp(22px,4.6vw,40px);margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .hero-actions{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e6eef8}
+    .stats{display:flex;gap:12px;margin-top:12px}
+    .stat{background:var(--glass);padding:10px;border-radius:10px;text-align:center;min-width:88px}
+    .stat strong{display:block;font-size:18px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+
+    /* ===== Sections ===== */
+    section{margin-bottom:36px}
+    .section-header{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}
+    .section-header h2{margin:0}
+    .grid{display:grid;gap:16px}
+
+    /* Facilities - 3 col */
+    .facilities .grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .facility{display:flex;gap:12px;align-items:flex-start}
+    .facility .icon{width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .facility p{margin:0;color:var(--muted)}
+
+    /* Services - horizontal cards */
+    .services .grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .service{padding:14px;border-radius:12px;background:linear-gradient(0deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));}
+    .service h3{margin:6px 0 8px}
+
+    /* Plans */
+    .plans{display:flex;gap:16px;flex-wrap:wrap}
+    .plan{flex:1 1 220px;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));}
+    .plan h3{margin:0 0 8px}
+    .plan .price{font-size:22px;font-weight:800}
+    .plan ul{padding-left:18px;color:var(--muted)}
+
+    /* Testimonials */
+    .testimonials{display:flex;gap:12px;overflow:auto;padding-bottom:6px}
+    .testimonial{min-width:240px;padding:14px;border-radius:12px;background:var(--card)}
+
+    /* Contact / Footer */
+    .contact{display:grid;grid-template-columns:1fr 300px;gap:18px}
+    form label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+
+    /* Responsive tweaks */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+    }
+
+    /* small helper */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="brand">
+        <div class="logo">PF</div>
+        <div>
+          <div style="font-weight:800">PulseFit Gym</div>
+          <div class="muted" style="font-size:13px">Train smarter. Feel stronger.</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="cta" href="#plans">Become a Member</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <h1>Build muscle, boost energy — join PulseFit today.</h1>
+          <p>State-of-the-art equipment, certified trainers, and flexible membership plans to match your goals.</p>
+
+          <div class="hero-actions">
+            <button class="btn" onclick="scrollToSection('plans')">View Plans</button>
+            <button class="btn btn-ghost" onclick="scrollToSection('contact')">Book a Free Trial</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat card"><strong>25+</strong><small class="muted">Years Coaching</small></div>
+            <div class="stat card"><strong>1200+</strong><small class="muted">Active Members</small></div>
+            <div class="stat card"><strong>40</strong><small class="muted">Weekly Classes</small></div>
+          </div>
+        </div>
+
+        <div class="card hero-right" style="text-align:center">
+          <h3 style="margin-top:0">Today’s Class</h3>
+          <p class="muted">HIIT Strength • 7:00 AM — 8:00 AM</p>
+          <div style="height:12px"></div>
+          <div style="display:flex;gap:8px;justify-content:center">
+            <div style="min-width:80px"><strong>Trainer</strong><div class="muted">Alex R.</div></div>
+            <div style="min-width:80px"><strong>Level</strong><div class="muted">Intermediate</div></div>
+            <div style="min-width:80px"><strong>Slots</strong><div class="muted">12/20</div></div>
+          </div>
+          <div style="height:12px"></div>
+          <button class="btn" onclick="alert('Thanks! Your trial class is requested — we will contact you.')">Request Free Trial</button>
+        </div>
+      </section>
+
+      <section id="facilities" class="facilities">
+        <div class="section-header">
+          <h2>Facilities</h2>
+          <div class="muted">Open 6:00 AM — 11:00 PM daily</div>
+        </div>
+
+        <div class="grid">
+          <div class="facility card">
+            <div class="icon">🏋️</div>
+            <div>
+              <strong>Strength Zone</strong>
+              <p>Free weights, squat racks, and functional rigs with certified spotters.</p>
+            </div>
+          </div>
+
+          <div class="facility card">
+            <div class="icon">🚴</div>
+            <div>
+              <strong>Cardio Arena</strong>
+              <p>Rowers, treadmills, bikes and interval setups for every fitness level.</p>
+            </div>
+          </div>
+
+          <div class="facility card">
+            <div class="icon">🧘</div>
+            <div>
+              <strong>Mind & Mobility</strong>
+              <p>Stretching area, yoga mats, and guided mobility sessions.</p>
+            </div>
+          </div>
+
+          <div class="facility card">
+            <div class="icon">💆</div>
+            <div>
+              <strong>Recovery Lounge</strong>
+              <p>Sauna, foam rollers, and post-workout beverages for faster recovery.</p>
+            </div>
+          </div>
+
+          <div class="facility card">
+            <div class="icon">🧴</div>
+            <div>
+              <strong>Locker Rooms</strong>
+              <p>Secure lockers, showers, and grooming essentials on-site.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <div class="section-header">
+          <h2>Services</h2>
+          <div class="muted">Personalized coaching, group sessions, and nutrition plans</div>
+        </div>
+
+        <div class="grid">
+          <div class="service card">
+            <h3>Personal Training</h3>
+            <p class="muted">One-on-one coaching with periodized programs and progression tracking.</p>
+            <div style="height:8px"></div>
+            <ul class="muted">
+              <li>Initial assessment & goal plan</li>
+              <li>Weekly check-ins</li>
+              <li>Technique coaching</li>
+            </ul>
+          </div>
+
+          <div class="service card">
+            <h3>Group Classes</h3>
+            <p class="muted">From HIIT to yoga — small, motivating classes with certified instructors.</p>
+          </div>
+
+          <div class="service card">
+            <h3>Nutrition Coaching</h3>
+            <p class="muted">Macros and meal plans tailored to your goals and lifestyle.</p>
+          </div>
+
+          <div class="service card">
+            <h3>Corporate Wellness</h3>
+            <p class="muted">Onsite or remote sessions for teams, plus fitness challenges to boost morale.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="plans" class="plans-section">
+        <div class="section-header">
+          <h2>Membership Plans</h2>
+          <div class="muted">Flexible terms — pause or cancel anytime</div>
+        </div>
+
+        <div class="plans">
+          <div class="plan card">
+            <h3>Basic</h3>
+            <div class="price">₹999 / mo</div>
+            <p class="muted">Access to gym floor & lockers</p>
+            <ul>
+              <li>Unlimited gym access</li>
+              <li>3 group classes / mo</li>
+              <li>Free Wi‑Fi</li>
+            </ul>
+            <div style="height:10px"></div>
+            <button class="btn btn-ghost" onclick="selectPlan('Basic')">Choose Basic</button>
+          </div>
+
+          <div class="plan card">
+            <h3>Pro</h3>
+            <div class="price">₹1999 / mo</div>
+            <p class="muted">Includes classes & 2 PT sessions</p>
+            <ul>
+              <li>Unlimited classes</li>
+              <li>2 personal training sessions / mo</li>
+              <li>Priority booking</li>
+            </ul>
+            <div style="height:10px"></div>
+            <button class="btn" onclick="selectPlan('Pro')">Choose Pro</button>
+          </div>
+
+          <div class="plan card">
+            <h3>Elite</h3>
+            <div class="price">₹3499 / mo</div>
+            <p class="muted">All features + unlimited PT</p>
+            <ul>
+              <li>Unlimited personal training</li>
+              <li>Nutrition coaching</li>
+              <li>Free gear pack</li>
+            </ul>
+            <div style="height:10px"></div>
+            <button class="btn" onclick="selectPlan('Elite')">Choose Elite</button>
+          </div>
+        </div>
+      </section>
+
+      <s
